@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <list>
+#include <string>
 
 using namespace std;
 
@@ -20,11 +21,6 @@ class Graph {
 			adj_list[j].push_back(i);
 		
 		}
-		/*
-		bool is_edge(int i, int j) {
-			return adj_matrix[i][j];
-		}
-		*/
 		// Finds the vertex with the least amount of edges
 		int find_min_degree() {
 			unsigned int min_degree = 99999999;
@@ -48,11 +44,11 @@ class Graph {
 		}
 };
 
-Graph * read_graph() {
+Graph * read_graph(string file_name) {
 	int num_nodes;
 	int num_edges;
 	// Open file
-	std::ifstream graphData ("keller6.clq");
+	std::ifstream graphData (file_name);
 	std::string line;
 	Graph *as;
 	// While there is another line
@@ -80,7 +76,7 @@ Graph * read_graph() {
 
 int main(int argc, char * argv[]) {
 	list<int> max_independent_set;
-	Graph *as = read_graph();
+	Graph *as = read_graph(argv[1]);
 	int count = 1000;
 	while (count >= 0) {
 		int next_vertex = as->find_min_degree();

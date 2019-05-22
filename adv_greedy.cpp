@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <list>
+#include <string>
 
 using namespace std;
 
@@ -70,11 +71,11 @@ class Graph {
 		}
 };
 
-Graph * read_graph() {
+Graph * read_graph(string file_name) {
 	int num_nodes;
 	int num_edges;
 	// Open file
-	std::ifstream graphData ("san1000.clq");
+	std::ifstream graphData (file_name);
 	std::string line;
 	Graph *as;
 	// While there is another line
@@ -102,7 +103,7 @@ Graph * read_graph() {
 
 int main(int argc, char * argv[]) {
 	list<int> max_independent_set;
-	Graph *as = read_graph();
+	Graph *as = read_graph(argv[1]);
 	int count = 1000;
 	while (count >= 0) {
 		int next_vertex = as->find_min_degree();
